@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Comun</title>
+
+</head>
+<body>
+<header th:fragment="cabecera(titulo, subtitulo)" class = "site-header">
+    <p class="brand" th:text="#{app.name}">Cultural Tocina</p>
+    <p class="tagline" th:text="#{app.tagline}">Eslogan</p>
+    <h1 th:text="${titulo}">Titulo de la pagina</h1>
+    <p class="subtitle" th:text="#{subtitulo}">Subtitulo</p>
+</header>
+<nav th:fragment="navegacion(actual)" class="site-nav" th:attr="aria-label=#{nav.label}">
+    <ul class="menu">
+        <li>
+            <a th:href="@{/}" th:text="#{nav.home}"
+               th:classappend="${actual == 'home'} ? 'active'">Actividades</a>
+        </li>
+        <li>
+            <a th:href="@{/visita}" th:text="#{nav.visit}"
+               th:classappend="${actual == 'visit'} ? 'active'">Tu visita</a>
+        </li>
+    </ul>
+    <div class="lang">
+        <span th:text="#{lang.label}">Idioma</span>:
+        <a th:href="@{(lang='es')}" th:text="#{lang.es}">Español</a> |
+        <a th:href="@{(lang='en')}" th:text="#{lang.en}">English</a>
+    </div>
+</nav>
+<article th:fragment="tarjeta(id)" class="card">
+    <h3 th:text="#{'activity.' + ${id} + '.title'}">Título</h3>
+    <p th:text="#{'activity.' + ${id} + '.desc'}">Descripción</p>
+    <p class="info" th:text="#{'activity.' + ${id} + '.info'}">Dato práctico</p>
+</article>
+<footer th:fragment="pie" class="site-footer">
+<p th:text="#{footer.text}">Pie</p>
+</footer>
+</body>
+</html>

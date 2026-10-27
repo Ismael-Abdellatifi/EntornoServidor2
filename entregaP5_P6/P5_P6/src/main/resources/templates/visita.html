@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{visita.title}">Tu visita</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<!-- Remplazamos la cabecera definida por comun.html, le pasa el titulo y el subtitulo traducidos al idioma configurado.-->
+
+<header th:replace="~{comun :: cabecera(#{visita.title}, #{visita.subtitle})}"></header>
+<!-- Remplazamos el menu de navegacion que tenemos definido en comun.html-->
+
+<nav th:replace="~{comun :: navegacion('visita', '/visita')}"></nav>
+<main class="visit-grid">
+    <section class="info-block">
+        <!-- Título de la sección obtenido del archivo de mensajes -->
+        <h2 th:text="#{visita.schedule.title}">Horarios</h2>
+        <!-- Texto descriptivo traducido según la clave visit.schedule.text -->
+        <p th:text="#{visita.schedule.text}">Texto</p>
+    </section>
+    <section class="info-block">
+        <!-- Muestra el título traducido de esta sección -->
+        <h2 th:text="#{visita.access.title}">Cómo llegar</h2>
+        <!-- Muestra el texto explicativo sobre el acceso -->
+        <p th:text="#{visita.access.text}">Texto</p>
+    </section>
+    <section class="info-block">
+        <!-- Muestra el título de la sección de entradas -->
+        <h2 th:text="#{visita.prices.title}">Entradas</h2>
+        <!-- Muestra el texto con la información de los precios -->
+        <p th:text="#{visita.prices.text}">Texto</p>
+    </section>
+    <section class="info-block">
+        <!-- Muestra el título de la sección de accesibilidad -->
+        <h2 th:text="#{visita.accessibility.title}">Accesibilidad</h2>
+        <!-- Muestra el texto con los detalles de accesibilidad -->
+        <p th:text="#{visita.accessibility.text}">Texto</p>
+    </section>
+</main>
+<!-- Remplazamos el pie de pagina que hemos definido en comun.html, reutilizando para el mismo fragmento en todas las paginas.-->
+
+<footer th:replace="~{comun :: pie}"></footer>
+
+</body>
+</html>

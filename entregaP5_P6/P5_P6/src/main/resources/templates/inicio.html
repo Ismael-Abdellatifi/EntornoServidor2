@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{inicio.title}">Actividades</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<!-- Inserta la cabecera de comun.html, pasándole el título y subtítulo traducidos al idioma activo. -->
+<header th:replace="~{comun :: cabecera(#{inicio.title}, #{inicio.subtitle})}"></header>
+
+<!-- Inserta el menú de navegación de comun.html: página actual y ruta para el selector de idioma. -->
+<nav th:replace="~{comun :: navegacion('inicio', '/')}"></nav>
+<main>
+<div class="card-grid">
+    <!-- Recorre la lista de actividades que el controlador envió al modelo
+         e inserta de comun.html una tarjeta por cada una. -->
+    <div class="card-slot" th:each="act : ${actividades}"
+         th:insert="~{comun :: tarjeta(${act})}"></div>
+</div>
+</main>
+
+<!-- Inserta el pie de página de comun.html, reutilizado en todas las páginas. -->
+<footer th:replace="~{comun :: pie}"></footer>
+
+</body>
+</html>

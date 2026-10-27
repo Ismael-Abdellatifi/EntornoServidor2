@@ -1,0 +1,157 @@
+
+:root {
+    --verde: #4a7c59;
+    --verde-oscuro: #2f5a3d;
+    --crema: #fdf6e3;
+    --crema-oscuro: #efe4c8;
+    --texto: #2d3a2f;
+    --gris: #5f6b60;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--texto);
+    background: var(--crema);
+    line-height: 1.5;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+
+.site-header {
+    background: var(--verde);
+    color: var(--crema);
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+
+.site-header p {
+    margin: 0;
+}
+
+.site-header h1 {
+    margin: 0.5rem 0 0;
+}
+
+
+.site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: var(--crema-oscuro);
+    border-bottom: 3px solid var(--verde);
+    padding: 0.5rem 1rem;
+}
+
+.menu {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav a {
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.site-nav a:hover {
+    text-decoration: underline;
+}
+
+
+.site-nav a.active {
+    background: var(--verde);
+    color: var(--crema);
+}
+
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    background: #fffdf7;
+    border: 1px solid var(--crema-oscuro);
+    border-top: 4px solid var(--verde);
+    border-radius: 6px;
+    padding: 1rem;
+    height: 100%;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--verde-oscuro);
+}
+
+.card .info {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--gris);
+}
+
+
+.visit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.info-block {
+    background: #fffdf7;
+    border-left: 4px solid var(--verde);
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.info-block h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: var(--verde-oscuro);
+}
+
+
+.site-footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--verde-oscuro);
+    color: var(--crema);
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+
+@media (max-width: 800px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .card-grid,
+    .visit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .site-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

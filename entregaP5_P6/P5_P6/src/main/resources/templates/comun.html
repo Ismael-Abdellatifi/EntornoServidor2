@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Elementos comunes</title>
+</head>
+<body>
+<!-- Definimos un fragmento llamado cabecera que recibe los dos parametros:
+titulo y subtitulos.-->
+<header th:fragment="cabecera(titulo, subtitulo)" class="site-header">
+    <!-- Mostramos el nombre de la aplicacion obteniendo el archivo de traducciones.-->
+    <p class="brand" th:text="#{app.name}">Centro Cultural</p>
+    <!--Muestra el eslogan de la apliacion usando app.tagline-->
+    <p class="tagline" th:text="#{app.tagline}">Eslogan</p>
+    <!--Recibimos el titulo como parametro del fragmento de la pagina comun.html-->
+    <h1 th:text="${titulo}">Título de la página</h1>
+    <!-- Muestra el subtitulos recibido como parametro en el fragmento de comun.html-->
+    <p class="subtitle" th:text="${subtitulo}">Subtítulo</p>
+</header>
+
+<!-- Fragmento del menu de navegacion, para saber que pagina esta seleccionada-->
+<nav th:fragment="navegacion(actual, ruta)" class="site-nav" th:attr="aria-label=#{nav.label}">    <!-- Aqui tenemos el menu los enlaces.-->
+    <ul class="menu">
+        <li>
+            <!-- Genera las urls de inicio, muestra el texto traducido.-->
+            <a th:href="@{/}"
+               th:text="#{nav.home}"
+               th:classappend="${actual == 'home'} ? 'active'">Actividades</a>
+        </li>
+        <li>
+            <a th:href="@{/visita}" th:text="#{nav.visit}"
+               th:classappend="${actual == 'visit'} ? 'active'">Tu visita</a>
+        </li>
+    </ul>
+    <!--Paginas de visita enlace.-->
+    <div class="lang">
+        <!--Genera la url /visita y muestra el texto traducido.-->
+        <span th:text="#{lang.label}">Idioma</span>:
+        <a th:href="@{${ruta}(lang='es')}" th:text="#{lang.es}">Español</a> |
+        <a th:href="@{${ruta}(lang='en')}" th:text="#{lang.en}">English</a>
+    </div>
+</nav>
+
+<!--Representa una tarjeta de la actividad, que recibimos por ID-->
+<article th:fragment="tarjeta(id)" class="card">
+    <!--Muestra el titulo traducido de la actividad-->
+    <h3 th:text="#{'activity.' + ${id} + '.title'}">Título</h3>
+    <!--Muestra la descripcion traducida de la actividad-->
+    <p th:text="#{'activity.' + ${id} + '.desc'}">Descripción</p>
+   <!--Muestra informacion practica de la actividad.-->
+    <p class="info" th:text="#{'activity.' + ${id} + '.info'}">Dato práctico</p>
+</article>
+
+<!-- Muestra el texto del pie de página traducido mediante la clave footer.text. -->
+<footer th:fragment="pie" class="site-footer">
+    <p th:text="#{footer.text}">Pie</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale-1">
+    <title th:text="#{inicio.title}">Actividades</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header th:replace="~{fragments:: cabecera(#{inicio.title}, #{inicio.subtitule})}"></header>
+<nav th:replace="~{fragments :: navegacion('home')}"></nav>
+<main>
+    <footer th:replace="~{fragments :: pie}"></footer>
+</main>
+</body>
+</html>
