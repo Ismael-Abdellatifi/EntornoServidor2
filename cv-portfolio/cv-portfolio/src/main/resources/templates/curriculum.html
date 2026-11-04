@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Curriculum Vitae</title>
+    <!--<link rel = "stylesheet" th:href="@{/style.css}"> -->
+</head>
+<body>
+<h1 th:text="${nombre}">Nombre</h1>
+<h1 th:text="${titular}">Titular</h1>
+<h1 th:text="${presentacion}">Presentacion</h1>
+<h2 th:text="#{cv.habilidad}">Habilidades</h2>
+<ul>
+    <li th:each="h : ${habilidad}" th:switch="${h.nivel}">
+        <!--<span th:case="'alto'" class = "nivel-alto" th:text="|${h.nombre} #{nivel.alto}|"></span>-->
+
+
+    </li>
+
+</ul>
+
+</body>
+</html>
