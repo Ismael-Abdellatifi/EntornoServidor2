@@ -1,4 +1,4 @@
-package com.example.cv_portfolio;
+package com.example.cv_portfolio.modelos;
 
 public class ExperienciaLaboral {
     private String nombreEmpresa;
