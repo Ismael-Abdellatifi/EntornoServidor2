@@ -1,0 +1,539 @@
+/* ==========================================================================
+   Tema Verde & Crema - Curriculum & Portfolio
+   Diseño limpio, profesional y accesible ("normalito")
+   ========================================================================== */
+
+:root {
+  /* Paleta Crema */
+  --bg-crema: #FAF7F2;
+  /* Crema suave de fondo */
+  --bg-superficie: #FFFFFF;
+  /* Blanco cálido para tarjetas y paneles */
+  --bg-crema-alt: #F3EFE6;
+  /* Crema de contraste para elementos secundarios */
+  --borde-crema: #E5DFD5;
+  /* Borde suave en tono crema */
+  --borde-crema-oscuro: #D3CBC0;
+  /* Borde más definido */
+
+  /* Paleta Verde */
+  --verde-principal: #2D5F3A;
+  /* Verde bosque elegante */
+  --verde-oscuro: #1E4428;
+  /* Verde oscuro para titulares y hover */
+  --verde-claro: #EBF3ED;
+  /* Verde muy claro para badges y acentos */
+  --verde-medio: #76A681;
+  /* Verde medio para detalles */
+  --verde-borde: #BFD7C5;
+  /* Borde verde suave */
+
+  /* Textos y contrastes */
+  --texto-principal: #2B332C;
+  /* Texto oscuro suave */
+  --texto-secundario: #5E6960;
+  /* Texto secundario o muted */
+  --texto-crema: #FAF7F2;
+  /* Texto crema para fondos verdes */
+
+  /* Estados y feedback */
+  --color-error: #B03A2E;
+  --bg-error: #FDF2E9;
+  --borde-error: #E6B0AA;
+
+  /* Tipografía y medidas */
+  --fuente: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radio: 8px;
+  --radio-badge: 5px;
+  --sombra: 0 2px 8px rgba(43, 51, 44, 0.05);
+  --sombra-tarjeta: 0 3px 12px rgba(43, 51, 44, 0.07);
+}
+
+/* --------------------------------------------------------------------------
+   Reset & Estilos Generales
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  padding: 30px 20px 60px 20px;
+  max-width: 860px;
+  background-color: var(--bg-crema);
+  color: var(--texto-principal);
+  font-family: var(--fuente);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   Tipografía y Encabezados
+   -------------------------------------------------------------------------- */
+h1 {
+  font-size: 2.1rem;
+  color: var(--verde-oscuro);
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  border-bottom: 2px solid var(--borde-crema);
+  padding-bottom: 12px;
+}
+
+h2 {
+  font-size: 1.35rem;
+  color: var(--verde-principal);
+  margin-top: 32px;
+  margin-bottom: 14px;
+  position: relative;
+  padding-left: 14px;
+  font-weight: 600;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  background-color: var(--verde-principal);
+  border-radius: 2px;
+}
+
+h3 {
+  font-size: 1.15rem;
+  color: var(--verde-oscuro);
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.05rem;
+  color: var(--verde-principal);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 8px 0 14px 0;
+}
+
+strong {
+  color: var(--verde-oscuro);
+}
+
+/* --------------------------------------------------------------------------
+   Enlaces y Botones
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--verde-principal);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+a:hover {
+  color: var(--verde-oscuro);
+  text-decoration: underline;
+}
+
+.boton,
+button,
+input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--verde-principal);
+  color: var(--texto-crema) !important;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radio);
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.boton:hover,
+button:hover,
+input[type="submit"]:hover {
+  background-color: var(--verde-oscuro);
+  box-shadow: 0 2px 6px rgba(30, 68, 40, 0.2);
+}
+
+.boton:active,
+button:active,
+input[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+/* Botones específicos de edición */
+button[name="quitar"] {
+  background-color: #FAF2F2;
+  color: var(--color-error) !important;
+  border: 1px solid var(--borde-error);
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+button[name="quitar"]:hover {
+  background-color: var(--color-error);
+  color: #FFFFFF !important;
+  border-color: var(--color-error);
+}
+
+button[name="anadir"] {
+  background-color: var(--bg-crema-alt);
+  color: var(--verde-principal) !important;
+  border: 1px solid var(--borde-crema-oscuro);
+  margin-top: 10px;
+  margin-right: 8px;
+}
+
+button[name="anadir"]:hover {
+  background-color: var(--verde-principal);
+  color: var(--texto-crema) !important;
+  border-color: var(--verde-principal);
+}
+
+button[name="previsualizar"] {
+  margin-top: 10px;
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Barra Superior / Navegación (.no-imprimir)
+   -------------------------------------------------------------------------- */
+p.no-imprimir {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  background-color: var(--bg-superficie);
+  border: 1px solid var(--borde-crema);
+  border-radius: var(--radio);
+  padding: 10px 16px;
+  margin: 0 0 24px 0;
+  box-shadow: var(--sombra);
+  font-size: 0.92rem;
+  color: var(--texto-secundario);
+}
+
+p.no-imprimir a {
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+p.no-imprimir a:not(.boton):hover {
+  background-color: var(--verde-claro);
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   Listas y Badges de Habilidades e Idiomas
+   -------------------------------------------------------------------------- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+
+ul li {
+  margin: 0;
+}
+
+.nivel-alto,
+.nivel-medio,
+.nivel-bajo,
+.etiqueta-verde,
+.etiqueta-gris,
+.etiqueta-tec {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radio-badge);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Habilidades y niveles */
+.nivel-alto {
+  background-color: var(--verde-principal);
+  color: var(--texto-crema);
+}
+
+.nivel-medio {
+  background-color: #D6E8DA;
+  color: var(--verde-oscuro);
+  border: 1px solid var(--verde-borde);
+}
+
+.nivel-bajo {
+  background-color: var(--bg-crema-alt);
+  color: var(--texto-secundario);
+  border: 1px solid var(--borde-crema);
+}
+
+/* Estados de proyectos */
+.etiqueta-verde {
+  background-color: #D6E8DA;
+  color: var(--verde-oscuro);
+  border: 1px solid var(--verde-borde);
+}
+
+.etiqueta-gris {
+  background-color: var(--bg-crema-alt);
+  color: var(--texto-secundario);
+  border: 1px solid var(--borde-crema);
+}
+
+/* Etiquetas de tecnologías */
+.etiqueta-tec {
+  background-color: var(--verde-claro);
+  color: var(--verde-oscuro);
+  border: 1px solid var(--verde-borde);
+  margin-right: 6px;
+  margin-bottom: 6px;
+  font-size: 0.82rem;
+}
+
+/* --------------------------------------------------------------------------
+   Sección Curriculum: Estudios y Experiencia
+   -------------------------------------------------------------------------- */
+body>div:not(.tarjeta) {
+  background-color: var(--bg-superficie);
+  border: 1px solid var(--borde-crema);
+  border-radius: var(--radio);
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--sombra);
+}
+
+body>div:not(.tarjeta) p {
+  margin: 4px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Tarjetas de Proyectos (.tarjeta)
+   -------------------------------------------------------------------------- */
+.tarjeta {
+  background-color: var(--bg-superficie);
+  border: 1px solid var(--borde-crema);
+  border-radius: var(--radio);
+  padding: 22px 24px;
+  margin: 18px 0;
+  box-shadow: var(--sombra-tarjeta);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tarjeta:hover {
+  box-shadow: 0 6px 18px rgba(43, 51, 44, 0.09);
+}
+
+.tarjeta h2,
+.tarjeta h3 {
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.tarjeta h2::before,
+.tarjeta h3::before {
+  display: none;
+}
+
+.tarjeta img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid var(--borde-crema);
+  margin: 14px 0;
+  background-color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   Formularios e Inputs (Filtro Portfolio y Editor)
+   -------------------------------------------------------------------------- */
+form {
+  margin: 20px 0;
+}
+
+/* Barra de filtros de Portfolio */
+form[method="get"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  background-color: var(--bg-superficie);
+  border: 1px solid var(--borde-crema);
+  border-radius: var(--radio);
+  padding: 16px 20px;
+  box-shadow: var(--sombra);
+  margin-bottom: 24px;
+}
+
+form[method="get"] label {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+form[method="get"] input,
+form[method="get"] select {
+  width: auto;
+  min-width: 130px;
+}
+
+/* Campos del formulario de edición */
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: var(--texto-principal);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 9px 12px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--borde-crema-oscuro);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--texto-principal);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--verde-principal);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(45, 95, 58, 0.18);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 85px;
+}
+
+/* --------------------------------------------------------------------------
+   Errores y Validaciones
+   -------------------------------------------------------------------------- */
+.error {
+  display: block;
+  color: var(--color-error);
+  font-size: 0.86rem;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+p.error {
+  background-color: var(--bg-error);
+  border-left: 4px solid var(--color-error);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 14px 0;
+}
+
+/* --------------------------------------------------------------------------
+   Impresión (@media print)
+   -------------------------------------------------------------------------- */
+@media print {
+  body {
+    background-color: #FFFFFF;
+    color: #000000;
+    max-width: 100%;
+    padding: 0;
+    font-size: 13px;
+  }
+
+  .no-imprimir {
+    display: none !important;
+  }
+
+  .tarjeta,
+  body>div:not(.tarjeta) {
+    box-shadow: none;
+    border: 1px solid #CCC;
+    page-break-inside: avoid;
+    margin-bottom: 12px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  strong {
+    color: #000000;
+  }
+
+  h2::before {
+    background-color: #333333;
+  }
+
+  .nivel-alto,
+  .nivel-medio,
+  .nivel-bajo,
+  .etiqueta-verde,
+  .etiqueta-gris,
+  .etiqueta-tec {
+    background-color: transparent !important;
+    border: 1px solid #666 !important;
+    color: #000000 !important;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive (Dispositivos Móviles)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  body {
+    padding: 16px 12px 40px 12px;
+  }
+
+  p.no-imprimir {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  form[method="get"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  form[method="get"] input,
+  form[method="get"] select,
+  form[method="get"] button {
+    width: 100%;
+  }
+
+  .tarjeta {
+    padding: 16px;
+  }
+}

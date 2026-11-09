@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{portfolio.titulo}">Portfolio</title>
+    <link rel="stylesheet" th:href="@{/estilo.css}">
+</head>
+<body>
+<!-- Enlaces a menu de navegacion con sus traducciones respectivamentes.-->
+<p class="no-imprimir">
+    <a th:href="@{/portfolio(lang='es')}">Español</a>
+    <a th:href="@{/portfolio(lang='en')}">Ingles</a>
+    <a th:href="@{/curriculum}" th:text="#{portfolio.volver}"> Ver Curriculum</a>
+    <a class="boton" th:href="@{/portfolio/editar}" th:text="#{boton.editar}">Editar</a>
+</p>
+<h1 th:text="#{portfolio.titulo}">Portfolio</h1>
+<!-- Los parametros llegan al controlador, y se filtraria en el servidor.-->
+<form th:action="@{portfolio}" method="get">
+    <label for="categoria" th:text="#{portfolio.categoria}">Categoria</label>
+    <!-- Dejaria la opcion elegida marcada, al recagar la pagina.-->
+    <select id="categoria" name="categoria">
+        <option value="todas" th:selected="${categoria == 'todas'}" th:text="#{categoria.todas}">Todas</option>
+        <option value="aplicaciones" th:selected="${categoria == 'aplicaciones'}" th:text="#{categoria.aplicaciones}">
+            Aplicaciones
+        </option>
+        <option value="sitios" th:selected="${categoria == 'sitios'}" th:text="#{categoria.sitios}">Sitio Web</option>
+        <option value="diseno" th:selected="${categoria == 'diseno'}" th:text="#{categoria.diseno}">Diseños</option>
+    </select>
+    <!-- El año se mantiene en el campo, aunque no sea valido.-->
+    <label for="anio" th:text="#{portfolio.anio}">Año</label>
+    <input id="anio" type="number" name="anio" th:value="${anio}">
+    <button type="submit" th:text="#{portfolio.filtrar}">Filtrar</button>
+    <!-- Abriria sin parametros, que no tendria ningun filtro y se mostraria todos los proyectos.-->
+    <a th:href="@{/portfolio}" th:text="#{portfolio.mostrartodos}">Mostrar todos</a>
+</form>
+<!-- Se utiliza cuando el controlador no puede convertir el año a numero. -->
+<p class="error" th:if="${anioInvalido}" th:text="#{portfolio.anioinvalido}">Introduce un año valido </p>
+<p th:text="#{portfolio.resultados(${total})}">Resultados : 0</p>
+<p th:if="${total == 0}" th:text="#{portfolio.sinresultados}">No hay resultados</p>
+<div class="tarjeta" th:each="p : ${proyectos}">
+    <h2 th:text="${p.titulo}">Titulo</h2>
+    <p>
+        <span th:text="${p.anio}">2026</span>
+        <span th:switch="${p.categoria}">
+            <span th:case="'Springboot'" th:text="#{categoria.aplicaciones}"></span>
+            <span th:case="'Conexiona a una  Base de Datos'" th:text="#{categoria.sitios}"></span>
+            <span th:case="'HTML'" th:text="#{categoria.diseno}"></span>
+        </span>
+    </p>
+    <p th:switch="${p.estado}">
+        <!-- En curso saldria en verde y gris terminado.-->
+        <span th:case="'en_curso'" class="etiqueta-verde" th:text="#{estado.encurso}">En curso</span>
+        <span th:case="'terminado'" class="etiqueta-gris" th:text="#{estado.terminado}">Terminado</span>
+    </p>
+    <!-- Si el proyecto no tuviera imagen, no se generaria el apartado de <img> y si la tiene pues tendria su texto alternativo.-->
+    <img th:if="${p.imagen != null and !#strings.isEmpty(p.imagen)}"
+        th:src="@{${p.imagen}}"
+        th:alt="#{portfolio.imagen.alt(${p.titulo})}">
+    <p th:text="${p.descripcion}">Descripcion</p>
+    <div th:if="${!#arrays.isEmpty(p.tecnologias)}">
+        <h3 th:text="#{portfolio.tecnologias}">Tecnologías</h3>
+        <span class="etiqueta-tec" th:each="t : ${p.tecnologias}" th:text="${t}"></span>
+    </div>
+
+    <!-- Sin enlace no se mostraria nada.-->
+    <p th:if="${p.enlace != null and !#strings.isEmpty(p.enlace)}">
+        <a th:href="${p.enlace}" th:text="#{portfolio.verproyecto}">Ver proyecto</a>
+    </p>
+</div>
+</body>
+</html>
