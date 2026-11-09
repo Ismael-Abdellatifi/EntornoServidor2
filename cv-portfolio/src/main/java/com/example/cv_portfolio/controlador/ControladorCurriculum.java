@@ -12,11 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ControladorCurriculum {
     //El nombre se lee desde appliaction.properties, para poder cambiarlo sin tocar codigo como tal.
-<<<<<<<< HEAD:cv-portfolio/cv-portfolio/cv-portfolio/cv-portfolio/src/main/java/com/example/cv_portfolio/controlador/ControladorCurriculum.java
     @Value("${cv.nombre}")
-========
-    @Value("${cv.nombre")
->>>>>>>> 788b4f2a2382072dfa5f92b9d34ff03476668585:cv-portfolio/cv-portfolio/src/main/java/com/example/cv_portfolio/controlador/ControladorCurriculum.java
     private String nombre;
 
     @GetMapping("/curriculum")
