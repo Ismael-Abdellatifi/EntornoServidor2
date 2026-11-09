@@ -1,6 +1,4 @@
-package com.example.cv_portfolio;
-
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+package com.example.cv_portfolio.modelos;
 
 public class Estudio {
     private String nombre;

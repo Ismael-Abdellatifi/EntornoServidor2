@@ -1,10 +1,10 @@
-package com.example.cv_portfolio;
+package com.example.cv_portfolio.modelos;
 
-public class Idioma {
-    private String nombre;
-    private String nivel;
+public class Habilidad {
+private String nombre;
+private String nivel;
 
-    public Idioma(String nombre, String nivel) {
+    public Habilidad(String nombre, String nivel) {
         this.nombre = nombre;
         this.nivel = nivel;
     }
@@ -24,4 +24,5 @@ public class Idioma {
     public void setNivel(String nivel) {
         this.nivel = nivel;
     }
+
 }

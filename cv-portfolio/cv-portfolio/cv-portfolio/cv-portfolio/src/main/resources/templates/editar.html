@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{editar.titulo}">Editar portfolio</title>
+    <link rel="stylesheet" th:href="@{/estilo.css}">
+</head>
+<body>
+<!-- Enlaces a menu de navegacion con sus traducciones respectivamentes.-->
+<p class="no-imprimir">
+    <a th:href="@{/portfolio/editar(lang='es')}">Español</a>
+    <a th:href="@{/portfolio/editar(lang='en')}">Ingles</a>
+    <a class="boton" th:href="@{/portfolio}" th:text="#{editar.volver}">Portfolio</a>
+    <a th:href="@{/curriculum}" th:text="#{portfolio.volver}"> Ver Curriculum</a>
+</p>
+<h1 th:text="#{editar.titulo}">Editar Portfolio</h1>
+<!--th:object enlaza el formulario con el objeto "formulario" del controlador.
+     Es POST porque envía datos que el servidor valida y conserva -->
+<form th:action="@{/portfolio/editar}" th:object="${formulario}" method="post">
+    <!-- Botón oculto para que Enter genera la vista previa -->
+    <button type="submit" class="oculto" tabindex="-1" aria-hidden="true" th:text="#{boton.previsualizar}">Generar Vista
+        Previa
+    </button>
+    <!-- Solo aparece si hay algun error de validacion.-->
+    <p class="error" th:if="${#fields.hasErrors('*')}" th:text="#{editar.revisa}">Revisar</p>
+    <h2 th:text="#{editar.datospersonales}">Datos Personales</h2>
+    <p>
+        <!-- El th:field generaria nombre,id y value y se conservaria lo escrito, y el th:errors muestra el mensaje solo si el campo tiene error.-->
+        <label for="nombre" th:text="#{editar.nombre}">Nombre Completo</label>
+        <input id="nombre" type="text" th:field="*{nombre}">
+        <span class="error" th:errors="*{nombre}"></span>
+    </p>
+    <p>
+        <label for="titular" th:text="#{editar.titular}">Titular Profesional</label>
+        <input id="titular" type="text" th:field="*{titular}">
+        <span class="error" th:errors="*{titular}"></span>
+
+    </p>
+    <p>
+        <label for="presentacion" th:text="#{editar.presentacion}">Presentacion</label>
+        <textarea id="presentacion" rows="4" cols="50" th:field="*{presentacion}"></textarea>
+        <span class="error" th:errors="*{presentacion}"></span>
+
+    </p>
+    <p>
+        <label for="ciudad" th:text="#{editar.ciudad}">Ciudad</label>
+        <input id="ciudad" type="text" th:field="*{ciudad}">
+    </p>
+    <p>
+        <label for="email" th:text="#{editar.email}">Correo Electronico</label>
+        <input id="email" type="text" th:field="*{email}">
+        <span class="error" th:errors="*{email}"></span>
+    </p>
+    <h2 th:text="#{editar.proyectos}">Proyectos</h2>
+    <!-- Contamos las filas actuales y totales permitidas.-->
+    <p th:text="#{editar.contador(${#lists.size(formulario.proyectos)}, ${maxProyectos})}">Proyectos: 1 de 5</p>
+    <div class="tarjeta" th:each="proyecto, fila : *{proyectos}">
+        <h3 th:text="#{editar.proyecto(${fila.count})}">Proyecto 1</h3>
+        <!-- Cada fila tiene su propio boton y el servidor sabe cual tiene que seleccionar si usarmos el boton de quitar.-->
+        <button type="submit" name="quitar" th:value="${fila.index}" th:text="#{boton.quitar}">Quitar este proyecto
+        </button>
+
+        <p>
+            <!--Los __ __ hacen que Thymeleaf calcule el índice antes de interpretar
+            el resto de la expresión.-->
+            <label th:for="${'titulo'+ fila.index}" th:text="#{editar.proyecto.titulo}">Titulo</label>
+            <input type="text" th:id="${'titulo' + fila.index}" th:field="*{proyectos[__${fila.index}__].titulo}">
+            <span class="error" th:errors="*{proyectos[__${fila.index}__].titulo}"></span>
+        </p>
+        <p>
+            <!-- El año es un campo de texto para que el servidor lo reciba y lo valide.-->
+            <label th:for="${'anio'+ fila.index}" th:text="#{portfolio.anio}">Año</label>
+            <input type="text" th:id="${'anio' + fila.index}" th:field="*{proyectos[__${fila.index}__].anio}">
+            <span class="error" th:errors="*{proyectos[__${fila.index}__].anio}"></span>
+        </p>
+        <p>
+            <!-- El texto visible sale de los messages.-->
+            <label th:for="${'categoria'+ fila.index}" th:text="#{portfolio.categoria}">Categoria</label>
+            <select type="text" th:id="${'categoria' + fila.index}"
+                    th:field="*{proyectos[__${fila.index}__].categoria}">
+                <option value="" th:text="#{editar.elegir}"> Elige</option>
+                <option value="aplicaciones" th:text="#{categoria.aplicaciones}">Aplicaciones</option>
+                <option value="sitios" th:text="#{categoria.sitios}">Sitios Web</option>
+                <option value="diseno" th:text="#{categoria.diseno}">Diseño</option>
+            </select>
+            <span class="error" th:errors="*{proyectos[__${fila.index}__].categoria}"></span>
+        </p>
+        <p>
+            <label th:for="${'estado'+ fila.index}" th:text="#{editar.estado}">Estado</label>
+            <select type="text" th:id="${'estado' + fila.index}"
+                    th:field="*{proyectos[__${fila.index}__].estado}">
+                <option value="" th:text="#{editar.elegir}"> Elige</option>
+                <option value="en_curso" th:text="#{estado.encurso}">En curso</option>
+                <option value="terminado" th:text="#{estado.terminado}">Terminado</option>
+            </select>
+            <span class="error" th:errors="*{proyectos[__${fila.index}__].estado}"></span>
+        </p>
+        <p>
+            <label th:for="${'descripcion'+ fila.index}" th:text="#{editar.descripcion}">Descripcion</label>
+            <textarea rows="3" cols="50" th:id="${'descripcion' + fila.index}"
+                      th:field="*{proyectos[__${fila.index}__].descripcion}"></textarea>
+            <span class="error" th:errors="*{proyectos[__${fila.index}__].descripcion}"></span>
+        </p>
+
+    </div>
+    <!-- Al llegar al maximo se oculta el AÑADIR y se muestra el limite.-->
+    <button type="submit" name="anadir" value="1"
+            th:if="${#lists.size(formulario.proyectos) < maxProyectos}"
+            th:text="#{boton.anadir}">Añadir proyecto</button>
+    <p class="error" th:unless="${#lists.size(formulario.proyectos) < maxProyectos}"
+       th:text="#{editar.limite}">Has alcanzado el límite de proyectos</p>
+    <!-- Cualquier envio que no se añadir ni quitar , cuenta como vista previa. -->
+    <button type="submit" name="previsualizar" value="1" th:text="#{boton.previsualizar}">Generar vista previa</button>
+</form>
+</body>
+</html>
