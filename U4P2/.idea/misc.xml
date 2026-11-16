@@ -4,12 +4,12 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/U4P2/apartado1-modelo-a-bd/pom.xml" />
-        <option value="$PROJECT_DIR$/U4P2/apartado2-sql-a-modelo/pom.xml" />
+        <option value="$PROJECT_DIR$/U4P2/U4P2/apartado1-modelo-a-bd/pom.xml" />
+        <option value="$PROJECT_DIR$/U4P2/U4P2/apartado2-sql-a-modelo/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="temurin-23" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-27" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

@@ -16,4 +16,10 @@ public class Puesto_Trabajo {
     private Long id;
     @Column(name = "codigo_puesto", length = 10, unique = true)
     private String codigo_puesto;
+    @Column(name = "denominacion", length = 60)
+    private String denominacion;
+    @Column(name = "planta")
+    private Integer planta;
+    @Column(name = "tiene_electricidad")
+    private boolean tiene_electricidad;
 }

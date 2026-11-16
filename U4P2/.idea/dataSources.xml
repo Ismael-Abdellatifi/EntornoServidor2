@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="u4p2-apartado1" uuid="c7345353-b290-4fbf-900b-c5e6fb84e1fc">
+    <data-source source="LOCAL" name="u4p2-apartado2" uuid="8d76c729-8077-428e-a2ed-09bd8cebbb7d">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:$PROJECT_DIR$/data/u4p2-apartado1</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="com.intellij.clouds.kubernetes.db.host.port" />
-        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-        <property name="com.intellij.clouds.kubernetes.db.container.port" />
-      </jdbc-additional-properties>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="u4p2-apartado2" uuid="f9bd2194-a7f7-4bf9-a3fa-eb19f070023f">
-      <driver-ref>h2.unified</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:$PROJECT_DIR$/U4P2/apartado2-sql-a-modelo/data/u4p2-apartado2</jdbc-url>
+      <jdbc-url>jdbc:h2:$PROJECT_DIR$/U4P2/U4P2/apartado2-sql-a-modelo/data/u4p2-apartado2</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
