@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pelotero</title>
+    <link rel="stylesheet" th:href="@{/estilos.css}">
+</head>
+<body>
+<!--/*@thymesVar id="equipos" type="java.util.List<com.example.U4P3.model.Equipos>"*/-->
+<!--/*@thymesVar id="equiposFormulario" type="com.example.U4P3.dto.EquipoFormulario"*/-->
+
+<header class="cabecera">
+    <h1>Equipos de fútbol</h1>
+    <p>Registro de equipos y plantillas abiertas</p>
+</header>
+
+<main class="contenedor">
+
+    <!-- ===== Listado ===== -->
+    <section class="tarjeta">
+        <h2>Equipos</h2>
+        <p class="contador" th:text="${#lists.size(equipos)} + ' equipo(s)'">0 equipo(s)</p>
+
+        <p th:if="${#lists.isEmpty(equipos)}" class="vacio">No hay equipos que mostrar.</p>
+
+        <table th:unless="${#lists.isEmpty(equipos)}">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Estadio</th>
+                <th>Fundación</th>
+                <th>Jugadores</th>
+                <th>Cuota mensual</th>
+                <th>Busca jugadores</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- th:each recorre la lista "equipos" que manda el controlador -->
+            <tr th:each="e : ${equipos}">
+                <td th:text="${e.nombre}">Nombre</td>
+                <td th:text="${e.ciudad}">Ciudad</td>
+                <td th:text="${e.estadio} ?: '—'">—</td>
+                <td th:text="${#temporals.format(e.fechaFundacion, 'dd/MM/yyyy')}">01/01/2000</td>
+                <td th:text="${e.numeroJugadores}">20</td>
+                <td th:text="${#numbers.formatDecimal(e.cuotaMensual, 1, 2, 'COMMA')} + ' €'">15,00 €</td>
+                <td th:text="${e.buscaJugadores} ? 'Sí' : 'No'">Sí</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ===== Formulario de alta ===== -->
+    <section class="tarjeta">
+        <h2>Añadir equipo</h2>
+
+        <!-- th:object enlaza el formulario con EquipoFormulario; th:field rellena name y value -->
+        <form th:action="@{/equipos}" th:object="${equiposFormulario}" method="post" novalidate>
+            <div class="rejilla">
+                <div class="campo">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" th:field="*{nombre}" th:errorclass="error">
+                    <span class="msg" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="ciudad">Ciudad *</label>
+                    <input type="text" id="ciudad" th:field="*{ciudad}" th:errorclass="error">
+                    <span class="msg" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></span>
+                </div>
+
+                <div class="campo ancho">
+                    <label for="estadio">Estadio</label>
+                    <input type="text" id="estadio" th:field="*{estadio}" th:errorclass="error">
+                    <span class="msg" th:if="${#fields.hasErrors('estadio')}" th:errors="*{estadio}"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="fechaFundacion">Fecha de fundación *</label>
+                    <input type="date" id="fechaFundacion" th:field="*{fechaFundacion}" th:errorclass="error">
+                    <span class="msg" th:if="${#fields.hasErrors('fechaFundacion')}" th:errors="*{fechaFundacion}"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="numeroJugadores">Número de jugadores *</label>
+                    <input type="number" id="numeroJugadores" th:field="*{numeroJugadores}" th:errorclass="error">
+                    <span class="msg" th:if="${#fields.hasErrors('numeroJugadores')}" th:errors="*{numeroJugadores}"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="cuotaMensual">Cuota mensual (€) *</label>
+                    <input type="number" id="cuotaMensual" th:field="*{cuotaMensual}" step="0.01" th:errorclass="error">
+                    <span class="msg" th:if="${#fields.hasErrors('cuotaMensual')}" th:errors="*{cuotaMensual}"></span>
+                </div>
+
+                <div class="campo check">
+                    <input type="checkbox" id="buscaJugadores" th:field="*{buscaJugadores}">
+                    <label for="buscaJugadores">Busca jugadores</label>
+                </div>
+            </div>
+
+            <button type="submit">Guardar equipo</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>
